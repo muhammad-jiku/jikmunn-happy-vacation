@@ -1,11 +1,9 @@
 import { ClientOnly, Container } from '@/components';
 
-const Home = async () => {
+export default function Home() {
   return (
     <ClientOnly>
       <Container> afag </Container>
     </ClientOnly>
   );
-};
-
-export default Home;
+}

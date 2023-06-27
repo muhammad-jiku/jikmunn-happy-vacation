@@ -1,4 +1,4 @@
-import { ClientOnly } from '@/components';
+import { ClientOnly, Navbar } from '@/components';
 import '../styles/globals.css';
 
 export const metadata = {
@@ -13,8 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <ClientOnly>afad</ClientOnly>
       <body>
+        <ClientOnly>
+          <Navbar />
+        </ClientOnly>
         <div className='pb-20 pt-28'>{children}</div>
       </body>
     </html>
