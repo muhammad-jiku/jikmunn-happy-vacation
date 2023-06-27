@@ -1,7 +1,11 @@
-import { ClientOnly } from '@/components';
+import { ClientOnly, Container } from '@/components';
 
 const Home = async () => {
-  return <ClientOnly>afag</ClientOnly>;
+  return (
+    <ClientOnly>
+      <Container> afag </Container>
+    </ClientOnly>
+  );
 };
 
 export default Home;
