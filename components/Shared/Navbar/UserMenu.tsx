@@ -13,12 +13,13 @@ import Avatar from '../Avatar';
 import MenuItem from './MenuItem';
 
 import profileImg from '../../../assets/images/profile.jpg';
+import { SafeUser } from '@/utils/types';
 
 interface UserMenuProps {
-  //   currentUser?: SafeUser | null;
+  currentUser?: SafeUser | null;
 }
 
-const UserMenu: React.FC<UserMenuProps> = () => {
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const router = useRouter();
 
   const loginModal = useLoginModal();
@@ -31,19 +32,19 @@ const UserMenu: React.FC<UserMenuProps> = () => {
     setIsOpen((value) => !value);
   }, []);
 
-  //   const onRent = useCallback(() => {
-  //     if (!currentUser) {
-  //       return loginModal.onOpen();
-  //     }
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
 
-  //     rentModal.onOpen();
-  //   }, [loginModal, rentModal, currentUser]);
+    rentModal.onOpen();
+  }, [loginModal, rentModal, currentUser]);
 
   return (
     <div className='relative'>
       <div className='flex flex-row items-center gap-3'>
         <div
-          //   onClick={onRent}
+          onClick={onRent}
           className='
             hidden
             md:block
@@ -57,7 +58,7 @@ const UserMenu: React.FC<UserMenuProps> = () => {
             cursor-pointer
           '
         >
-          Feel like home
+          Airbnb your home
         </div>
         <div
           onClick={toggleOpen}
@@ -79,7 +80,7 @@ const UserMenu: React.FC<UserMenuProps> = () => {
         >
           <AiOutlineMenu />
           <div className='hidden md:block'>
-            <Avatar src={profileImg?.src} />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
@@ -99,30 +100,34 @@ const UserMenu: React.FC<UserMenuProps> = () => {
           '
         >
           <div className='flex flex-col cursor-pointer'>
-            <>
-              <MenuItem
-                label='My trips'
-                onClick={() => router.push('/trips')}
-              />
-              <MenuItem
-                label='My favorites'
-                onClick={() => router.push('/favorites')}
-              />
-              <MenuItem
-                label='My reservations'
-                onClick={() => router.push('/reservations')}
-              />
-              <MenuItem
-                label='My properties'
-                onClick={() => router.push('/properties')}
-              />
-              <MenuItem label='Feel like home' onClick={rentModal.onOpen} />
-              <hr />
-              <MenuItem label='Logout' onClick={() => signOut()} />
-
-              <MenuItem label='Login' onClick={loginModal.onOpen} />
-              <MenuItem label='Sign up' onClick={registerModal.onOpen} />
-            </>
+            {currentUser ? (
+              <>
+                <MenuItem
+                  label='My trips'
+                  onClick={() => router.push('/trips')}
+                />
+                <MenuItem
+                  label='My favorites'
+                  onClick={() => router.push('/favorites')}
+                />
+                <MenuItem
+                  label='My reservations'
+                  onClick={() => router.push('/reservations')}
+                />
+                <MenuItem
+                  label='My properties'
+                  onClick={() => router.push('/properties')}
+                />
+                <MenuItem label='Airbnb your home' onClick={rentModal.onOpen} />
+                <hr />
+                <MenuItem label='Logout' onClick={() => signOut()} />
+              </>
+            ) : (
+              <>
+                <MenuItem label='Login' onClick={loginModal.onOpen} />
+                <MenuItem label='Sign up' onClick={registerModal.onOpen} />
+              </>
+            )}
           </div>
         </div>
       )}
