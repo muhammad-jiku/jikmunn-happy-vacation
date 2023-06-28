@@ -6,8 +6,10 @@ import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+
 import useLoginModal from '@/utils/hooks/useLoginModal';
 import useRegisterModal from '@/utils/hooks/useRegisterModal';
+
 import Modal from './Modal';
 import Button from '../Button';
 import Heading from '../Heading';
@@ -34,7 +36,7 @@ const RegisterModal = () => {
     setIsLoading(true);
 
     axios
-      .post('/api/register', data)
+      .post('/api/auth/register', data)
       .then(() => {
         toast.success('Registered!');
         registerModal.onClose();
