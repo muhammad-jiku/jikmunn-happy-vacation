@@ -1,6 +1,12 @@
 import getCurrentUser from '@/actions/getCurrentUser';
 import '../styles/globals.css';
-import { ClientOnly, LoginModal, RegisterModal, Navbar } from '@/components';
+import {
+  ClientOnly,
+  ToasterProvider,
+  LoginModal,
+  RegisterModal,
+  Navbar,
+} from '@/components';
 
 export const metadata = {
   title: 'Happy Vacation',
@@ -18,6 +24,7 @@ export default async function RootLayout({
     <html lang='en'>
       <body>
         <ClientOnly>
+          <ToasterProvider />
           <LoginModal />
           <RegisterModal />
           <Navbar currentUser={currentUser} />
