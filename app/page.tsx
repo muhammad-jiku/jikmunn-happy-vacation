@@ -1,10 +1,26 @@
-import { ClientOnly, Container } from '@/components';
+import getCurrentUser from '@/actions/getCurrentUser';
+import getListings, { IListingsParams } from '@/actions/getListings';
+import { ClientOnly, Container, EmptyState } from '@/components';
 
-export default function Home() {
+interface HomeProps {
+  searchParams: IListingsParams;
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const listings = await getListings(searchParams);
+  const currentUser = await getCurrentUser();
+
+  if (listings.length === 0) {
+    return (
+      <ClientOnly>
+        <EmptyState showReset />
+      </ClientOnly>
+    );
+  }
+
   return (
     <ClientOnly>
       <Container>
-        {' '}
         <div
           className='
             pt-24
