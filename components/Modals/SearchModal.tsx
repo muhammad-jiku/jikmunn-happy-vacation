@@ -9,7 +9,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 
 import useSearchModal from '@/utils/hooks/useSearchModal';
 import Modal from './Modal';
-import Heading from '../Heading';
+import Heading from '../Shared/Heading';
 import Counter from '../Inputs/Counter';
 import Calendar from '../Inputs/Calendar';
 import CountrySelect, { CountrySelectValue } from '../Inputs/CountrySelect';
@@ -39,7 +39,7 @@ const SearchModal = () => {
 
   const Map = useMemo(
     () =>
-      dynamic(() => import('../Map'), {
+      dynamic(() => import('../Shared/Map'), {
         ssr: false,
       }),
     [location]

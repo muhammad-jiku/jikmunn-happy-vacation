@@ -7,14 +7,14 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import useRentModal from '@/utils/hooks/useRentModal';
-import Heading from '../Heading';
+import Heading from '../Shared/Heading';
 import Input from '../Inputs/Input';
 import Counter from '../Inputs/Counter';
 import ImageUpload from '../Inputs/ImageUpload';
 import CountrySelect from '../Inputs/CountrySelect';
 import CategoryInput from '../Inputs/CategoryInput';
 import Modal from './Modal';
-import { categories } from '../Navbar/Categories';
+import { categories } from '../Shared/Navbar/Categories';
 
 enum STEPS {
   CATEGORY = 0,
@@ -62,7 +62,7 @@ const RentModal = () => {
 
   const Map = useMemo(
     () =>
-      dynamic(() => import('../Map'), {
+      dynamic(() => import('../Shared/Map'), {
         ssr: false,
       }),
     [location]
