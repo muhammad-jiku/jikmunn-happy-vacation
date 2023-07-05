@@ -9,7 +9,8 @@ declare global {
   var cloudinary: any;
 }
 
-const uploadPreset = 'lyx1l8ns';
+const uploadPreset = `${process.env.CLOUDINARY_UPLOAD_PRESET}`;
+// const uploadPreset = 'lyx1l8ns';
 
 interface ImageUploadProps {
   onChange: (value: string) => void;
